@@ -8,7 +8,7 @@ from pprint import pprint as pp
 
 import logging
 
-from flask import Blueprint
+from flask import Blueprint, json
 from flask import jsonify
 from flask import request
 from flask_httpauth import HTTPBasicAuth
@@ -113,6 +113,7 @@ def measure(f, name, method, context=None):
             measurement.stop()
             if CONF.get("verbose", False):
                 pp(measurement.__json__())
+            measurement.context['response'] = json.loads(returnVal.data)
             collection.insert(measurement.__json__())
 
         return returnVal
