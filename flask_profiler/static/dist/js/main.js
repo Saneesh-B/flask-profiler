@@ -82,7 +82,7 @@ var setFilteredTable = function() {
                 title: "name",
                 data: function(a, b) {
                     var c = document.createElement("div");
-                    return c.innerText = a.name, "display" === b ? "<span data-json='" + JSON.stringify(a.context) + "'><div style='display: none'>"+  JSON.stringify(a.context) +"</div>" + c.innerHTML + "</span>" : c.innerHTML
+                    return c.innerText = a.name, "display" === b ? "<span class='data-holder'><div style='display: none'>"+  JSON.stringify(a.context) +"</div>" + c.innerHTML + "</span>" : c.innerHTML
                 },
                 "class": "name",
                 orderable: !1
@@ -120,7 +120,7 @@ var setFilteredTable = function() {
             },
             drawCallback: function() {
                 $("#filteredTable tbody").on("click", "tr", function() {
-                    $(".filteredModal .modal-body").JSONView(JSON.stringify($(this).find("[data-json]").data("json"))), $(".filteredModal").modal("show")
+                    $(".filteredModal .modal-body").JSONView($(this).find(".data-holder div").html()), $(".filteredModal").modal("show")
                 }), $("#filteredTable").removeClass("loading"), $("html").animate({
                     scrollTop: 0
                 }, 300)
