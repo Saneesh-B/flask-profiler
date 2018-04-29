@@ -82,7 +82,7 @@ var setFilteredTable = function() {
                 title: "name",
                 data: function(a, b) {
                     var c = document.createElement("div");
-                    return c.innerText = a.name, "display" === b ? "<span data-json='" + JSON.stringify(a.context) + "'>" + c.innerHTML + "</span>" : c.innerHTML
+                    return c.innerText = a.name, "display" === b ? "<span data-json='" + JSON.stringify(a.context) + "'><div style='display: none'>"+  JSON.stringify(a.context) +"</div>" + c.innerHTML + "</span>" : c.innerHTML
                 },
                 "class": "name",
                 orderable: !1
