@@ -30,6 +30,8 @@ def verify_password(username, password):
         return True
 
     c = CONF["basicAuth"]
+    logging.warn(username)
+    logging.warn(password)
     if username == c["username"] and password == c["password"]:
         return True
     logging.warn("flask-profiler authentication failed")
