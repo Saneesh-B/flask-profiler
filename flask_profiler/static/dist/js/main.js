@@ -98,6 +98,12 @@ var setFilteredTable = function() {
                     return moment.unix(a.startedAt).format("DD/MM/YYYY h:mm:ss.MS A")
                 },
                 "class": "startedAt"
+            },{
+                title: "endedAt",
+                data: function(a) {
+                    return moment.unix(a.endedAt).format("DD/MM/YYYY h:mm:ss.MS A")
+                },
+                "class": "endedAt"
             }],
             initComplete: function() {
                 $("#filteredTable>thead").append($("#filteredTable .filter-row")), $(".filtered-datepicker").daterangepicker({
