@@ -77,10 +77,10 @@ class Mongo(BaseStorage):
                 '$search': filter
             }
 
-        logger.error(query)
         query = {
             "$and": [query]
         }
+        logger.error(query)
 
         if limit:
             cursor = self.collection.find(
