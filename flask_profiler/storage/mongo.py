@@ -52,6 +52,8 @@ class Mongo(BaseStorage):
         args = filtering.get('args', None)
         kwargs = filtering.get('kwargs', None)
         filter = filtering.get("filter", None)
+        if filter == '':
+            filter = None
 
         if sort[1] == "desc":
             sort_dir = pymongo.DESCENDING
