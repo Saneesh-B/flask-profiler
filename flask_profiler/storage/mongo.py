@@ -4,7 +4,9 @@ import pymongo
 from .base import BaseStorage
 import datetime
 from bson.objectid import ObjectId
+import logging
 
+logger = logging.getLogger("flask-profiler")
 
 class Mongo(BaseStorage):
     """
@@ -70,6 +72,7 @@ class Mongo(BaseStorage):
         if kwargs:
             query['kwargs'] = kwargs
 
+        logger.error(query)
         if limit:
             cursor = self.collection.find(
                 query
