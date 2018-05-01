@@ -51,6 +51,7 @@ class Mongo(BaseStorage):
         method = filtering.get('method', None)
         args = filtering.get('args', None)
         kwargs = filtering.get('kwargs', None)
+        filter = filtering.get("filter", None)
 
         if sort[1] == "desc":
             sort_dir = pymongo.DESCENDING
@@ -71,6 +72,10 @@ class Mongo(BaseStorage):
             query['args'] = args
         if kwargs:
             query['kwargs'] = kwargs
+        if filter:
+            query['$text'] = {
+                '$search': filter
+            }
 
         logger.error(query)
         if limit:
