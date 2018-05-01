@@ -78,6 +78,10 @@ class Mongo(BaseStorage):
             }
 
         logger.error(query)
+        query = {
+            "$and": [query]
+        }
+
         if limit:
             cursor = self.collection.find(
                 query
