@@ -132,6 +132,10 @@ var setFilteredTable = function() {
             var b = $(".filtered-datepicker");
             $("#filteredTable select.method").val("ALL"), $("#filteredTable input.filtered-name").val(""), $("#filteredTable input.elapsed").val(""), b.data("daterangepicker").setStartDate(moment().subtract(7, "days").format("MM/DD/YYYY")), b.data("daterangepicker").setEndDate(moment().format("MM/DD/YYYY")), a.draw()
         })
+
+        $(".doSearch").on('click', ()=>{
+            alert("yes")
+        })
     },
     getCharts = function() {
         $.ajax({
