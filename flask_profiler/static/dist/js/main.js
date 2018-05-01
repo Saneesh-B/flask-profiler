@@ -40,7 +40,7 @@ var profile = {
             var g = $("#filteredTable select.method").val();
             c = this.columnsIndex.filter, "ALL" === g && (g = ""), f.method = g, f.name = $("#filteredTable input.filtered-name").val(), f.elapsed = $("#filteredTable input.elapsed").val() || 0
         } else c = this.columnsIndex.grouped;
-        return f.sort = c[e.column] + "," + e.dir, f.skip = d.start, f.limit = d.length, f.startedAt = this.dateTime.startedAt, f.endedAt = this.dateTime.endedAt, f
+        return f.sort = c[e.column] + "," + e.dir, f.skip = d.start, f.limit = d.length, f.startedAt = this.dateTime.startedAt, f.endedAt = this.dateTime.endedAt,f.filter = $(".search-input").val(), f
     }
 };
 window.profile = profile, window.dayFilterValue = "day", window.profile.dateTime = {
