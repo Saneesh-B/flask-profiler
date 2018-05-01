@@ -134,7 +134,7 @@ var setFilteredTable = function() {
         })
 
         $(".doSearch").on('click', ()=>{
-            alert("yes")
+           a.draw()
         })
     },
     getCharts = function() {
