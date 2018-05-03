@@ -235,7 +235,7 @@ $(document).ready(function() {
         },
         responsive: !1,
         paging: !1,
-        pageLength: 1e4,
+        pageLength: 100,
         dom: "Btrtip",
         stateSave: !0,
         autoWidth: !1,
