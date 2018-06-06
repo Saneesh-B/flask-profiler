@@ -8,7 +8,7 @@ from pprint import pprint as pp
 
 import logging
 
-from flask import Blueprint, json
+from flask import Blueprint, json, Response
 from flask import jsonify
 from flask import request
 from flask_httpauth import HTTPBasicAuth
@@ -109,13 +109,22 @@ def measure(f, name, method, context=None):
 
         try:
             returnVal = f(*args, **kwargs)
+            if not isinstance(returnVal, Response):
+                returnVal = Response(response=returnVal, status=200)
         except:
             raise
         finally:
             measurement.stop()
             if CONF.get("verbose", False):
                 pp(measurement.__json__())
-            measurement.context['response'] = json.loads(returnVal.data)
+
+            resp = None
+            if is_json(returnVal.data):
+                resp = json.loads(returnVal.data.decode())
+            else:
+                resp = returnVal.data.decode()
+
+            measurement.context['response'] = resp
             collection.insert(measurement.__json__())
 
         return returnVal
@@ -270,6 +279,12 @@ def init_app(app):
     if not basicAuth or not basicAuth["enabled"]:
         logging.warn(" * CAUTION: flask-profiler is working without basic auth!")
 
+def is_json(myjson):
+  try:
+    json_object = json.loads(myjson)
+  except ValueError as e:
+    return False
+  return True
 
 class Profiler(object):
     """ Wrapper for extension. """
